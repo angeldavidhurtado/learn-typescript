@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <h1>Hola mundo</h1>
-      <Button text='Hola undo' names={['Ángel', 'Hurtado']} style={{fontSize: '32px'}} />
+      <Button text='Hola mundo' names={['Ángel', 'Hurtado']} style={{fontSize: '32px'}} />
     </>
   )
 }
