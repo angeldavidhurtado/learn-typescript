@@ -17,7 +17,9 @@ function App() {
         }}
         onClick={text => {alert(`Hola soy ${text}`)}}
       />
-      <Father></Father>
+      <Father>
+        <span>{'Este es un elemento hijo'}</span>
+      </Father>
     </>
   )
 }
