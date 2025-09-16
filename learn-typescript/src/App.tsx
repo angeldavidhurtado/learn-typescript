@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Button from './Components/Button'
 import Father from './Components/Father'
+import Link from './Components/Link'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -23,6 +24,9 @@ function App() {
       <Father setCount={setCount}>
         <span>{`Elemento hijo ${count}`}</span>
       </Father>
+      <Link href='https://angeldavidhurtado.github.io' target='_blank' customProp={3}>
+        Ángel David Hurtado
+      </Link>
     </>
   )
 }
