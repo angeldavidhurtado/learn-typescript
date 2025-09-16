@@ -3,9 +3,12 @@ type ButtonProps = {
   // children: React.JSX.Element | string // solo un elemento hijo
   // children: React.JSX.Element[] // varios elemento hijo
   setCount: React.Dispatch<React.SetStateAction<number>>
+  defaultValue?: string
 }
 
-function Father({children, setCount}: ButtonProps) {
+function Father({children, setCount, defaultValue = 'Ángel'}: ButtonProps) {
+  console.log(defaultValue)
+
   return (
     <button className='block' onClick={() => setCount(prev => prev + 1)}>
       {children}
