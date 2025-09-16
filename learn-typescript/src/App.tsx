@@ -1,7 +1,10 @@
+import { useState } from 'react'
 import Button from './Components/Button'
 import Father from './Components/Father'
 
 function App() {
+  const [count, setCount] = useState(0)
+
   return (
     <>
       <h1 className='text-center'>Hola mundo</h1>
@@ -17,8 +20,8 @@ function App() {
         }}
         onClick={text => {alert(`Hola soy ${text}`)}}
       />
-      <Father>
-        <span>{'Este es un elemento hijo'}</span>
+      <Father setCount={setCount}>
+        <span>{`Elemento hijo ${count}`}</span>
       </Father>
     </>
   )
