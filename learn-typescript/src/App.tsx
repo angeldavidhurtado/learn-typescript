@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Button from './Components/Button'
 import Father from './Components/Father'
 import Link from './Components/Link'
+import Component from './Components/Component'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,6 +28,7 @@ function App() {
       <Link href='https://angeldavidhurtado.github.io' target='_blank' customProp={3}>
         {123}
       </Link>
+      <Component />
     </>
   )
 }
