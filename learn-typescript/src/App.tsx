@@ -25,7 +25,7 @@ function App() {
         <span>{`Elemento hijo ${count}`}</span>
       </Father>
       <Link href='https://angeldavidhurtado.github.io' target='_blank' customProp={3}>
-        Ángel David Hurtado
+        {123}
       </Link>
     </>
   )

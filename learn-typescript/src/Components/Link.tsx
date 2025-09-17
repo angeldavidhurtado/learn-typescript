@@ -1,10 +1,15 @@
 import type { ComponentPropsWithoutRef } from "react"
 
 // type LinkProps = ComponentProps<'a'>
-type LinkProps = Omit<ComponentPropsWithoutRef<"a">, "href"> & {
+type Props = Omit<ComponentPropsWithoutRef<"a">, "href">
+type LinkProps = Props & {
   href?: string
+  children: number
   customProp?: number
+} /* & { // asi se puede seguir extendiendo
+  properties: types
 }
+*/
 
 function Link({href, children, customProp, ...props}: LinkProps) {
   console.log(`Prop personalizado: ${customProp}`)
