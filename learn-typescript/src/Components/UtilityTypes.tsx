@@ -29,7 +29,20 @@ type UpdateUser = {
 
 type UserPublicData = Pick<User, 'name' | 'password'>
 
+// type OptionalUserWithoutPassword = Partial<UserWithoutPassword>
+// Es como funciones Omit omite password en User y
+// luego Partial vuelve esos atributos opcionales
+/*
+  entonces es como que los <> y las palabras antes de los <>
+  como PalabraAntesDe<OtraCosas, 'aveces' | 'cosas' & 'aqui'>
+  todo esto en realidad son como funciones, clases o cosas pero
+  especificas para los tipos de datos pero es como lo mismo en
+  si
+*/
+type OptionalUserWithoutPassword = Partial<Omit<User, 'password'>>
 
+type Status = 'active' | 'inactive' | 'pending' | 'deleted' | 'blocked'
+type AllowedStatus = Exclude<Status, 'inactive' | 'pending'>
 
 
 function UtilityTypes({ name, age }: UpdateUser) {

@@ -3,6 +3,9 @@ import Button from './Components/Button'
 import Father from './Components/Father'
 import Link from './Components/Link'
 import Component from './Components/Component'
+import State from './Components/State'
+import UtilityTypes from './Components/UtilityTypes'
+import Desconocido from './Components/Desconocido'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -29,6 +32,9 @@ function App() {
         {123}
       </Link>
       <Component />
+      <State />
+      <UtilityTypes name="Ángel" age={15} />
+      <Desconocido />
     </>
   )
 }
