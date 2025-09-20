@@ -16,17 +16,17 @@ type ButtonProps = {
 
 // esto esta mal
 // javascript renombra name a string, cambia el nombre de las variables
+/*
 function saludar({ userName: j, userAge: a }: { userName: string, userAge: number }) {
   console.log([j, a])
 }
 saludar({ userName: 'Ángel', userAge: 26 })
-/*
-function saludar({ name, age }: { name: string, age: number }) {
+*/
+function saludar({ name, age }: { name: string, age: number }): string { // tipo de dato que retorna
   return `Soy ${name} y tengo ${age}`
 } // esta es la forma mas usada, creo, o con los type como fazt
 const saludo = saludar({name: 'Ángel', age: 26})
 console.log(saludo)
-*/
 /*
 function saludar(persona: { name: string, age: number }) {
   const { name, age } = persona

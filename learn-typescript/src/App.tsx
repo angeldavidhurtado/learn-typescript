@@ -7,6 +7,7 @@ import State from './Components/State'
 import UtilityTypes from './Components/UtilityTypes'
 import Desconocido from './Components/Desconocido'
 import Generics from './Components/Generics'
+import Functions from './Components/Functions'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -37,6 +38,7 @@ function App() {
       <UtilityTypes name="Ángel" age={15} />
       <Desconocido />
       <Generics />
+      <Functions />
     </>
   )
 }
