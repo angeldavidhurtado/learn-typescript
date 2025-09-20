@@ -41,6 +41,8 @@ console.log(`Es str?: ${typeof str}`) // Esto engania al compilador
 function Desconocido() {
   const body = document.getElementsByTagName('body')[0] as HTMLBodyElement
   const input = document.getElementById('user') as HTMLInputElement
+  console.log(body)
+  console.log(input)
 
   return (
     <>

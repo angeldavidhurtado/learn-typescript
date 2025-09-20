@@ -15,6 +15,11 @@ type UserWithoutPassword = {
   email: string
 }
 */
+const data1: UserWithoutPassword = {
+  name: 'Ángel',
+  age: 26
+}
+console.log(data1)
 
 type UpdateUser = Partial<User>
 /*
@@ -28,6 +33,11 @@ type UpdateUser = {
 */
 
 type UserPublicData = Pick<User, 'name' | 'password'>
+const data2: UserPublicData = {
+  name: 'Ángel',
+  password: 'abcd'
+}
+console.log(data2)
 
 // type OptionalUserWithoutPassword = Partial<UserWithoutPassword>
 // Es como funciones Omit omite password en User y
@@ -40,9 +50,17 @@ type UserPublicData = Pick<User, 'name' | 'password'>
   si
 */
 type OptionalUserWithoutPassword = Partial<Omit<User, 'password'>>
+const data3: OptionalUserWithoutPassword = {
+  name: 'Ángel',
+  age: 26,
+  // email: 'angeldavidhurtado.dev@gmail.com'
+}
+console.log(data3)
 
 type Status = 'active' | 'inactive' | 'pending' | 'deleted' | 'blocked'
 type AllowedStatus = Exclude<Status, 'inactive' | 'pending'>
+const data4: AllowedStatus = 'active'
+console.log(data4)
 
 
 function UtilityTypes({ name, age }: UpdateUser) {
