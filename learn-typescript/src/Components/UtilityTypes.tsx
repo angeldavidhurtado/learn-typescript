@@ -1,9 +1,29 @@
+/*
+se pueden definir types con la primera
+en minuscula pero es una mala practica,
+lo ideal es utilizar PascalCase
+
+type hola = {
+  age: number
+}
+
+const saludo: hola = { age: 3 }
+console.log(saludo)
+*/
+
 type User = {
   name: string
-  age: number
-  email: string
-  password: string
+  age?: number
+  email?: string
+  password?: string
 }
+
+const user: User = { name: 'Ángel',  }
+// Agrega el "?" porque puede que no este en el objeto
+// si esta genial, si no entonces omite el resto de la ejecucion
+// "?" -> optional chaining - encadenamiento opcional
+// Optional chaining corta sólo si email es null o undefined; si es '' (cadena vacía) llamará a toUpperCase() y devolverá ''.
+console.log(user.email?.toUpperCase()) // imprime undefined porque email es undefined y como no esta el valor entonces omite el resto de la ejecucion
 
 type UserWithoutPassword = Omit<User, 'email' | 'password'>
 /*

@@ -75,6 +75,20 @@ try {
   console.log(e)
 }
 
+// -- -- inferencia en funciones
+const letras = ['a', 'b', 'c']
+letras.forEach(
+  /*
+  no se define el tipo de dato en el paremetro
+  pero typescript lo infiere porque estamos
+  en un forEach entonces el tipode dato en
+  este caso es el de letras que es scring
+  y por eso lo puede inferir
+  function (letra) { console.log(letra) }
+  */
+  letra => console.log(letra)
+)
+
 
 function Functions() {
   return (
