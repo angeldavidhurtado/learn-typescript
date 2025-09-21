@@ -82,6 +82,46 @@ type AllowedStatus = Exclude<Status, 'inactive' | 'pending'>
 const data4: AllowedStatus = 'active'
 console.log(data4)
 
+// -- -- --
+
+type Hero = {
+  readonly id: string
+  // no se puede leer mientras desarrollo con typescript
+  // si por alguna razon llegara a compilarse a js entonces
+  // ahi igualmente si se puede editar id
+  // typescript - solo durante desarrollo
+  // javascript - es lo que le llega al navegador
+  name: string
+  isActive?: boolean
+}
+
+/*
+Object.freeze es codigo js, no permite modificar ningun valor
+const hero: Hero = Object.freeze(
+  {
+    id: 'abc',
+    name: 'Ángel',
+    isActive: true
+  }
+
+  // otra forma con TypeScript
+  const hero: Readonly<Hero> = {
+    id: 'abc',
+    name: 'Ángel',
+    isActive: true
+  }
+)
+*/
+
+const hero: Hero = {
+  id: 'abc',
+  name: 'Ángel',
+  isActive: true
+}
+
+// hero.id = 'abc'
+console.log(hero)
+
 
 function UtilityTypes({ name, age }: UpdateUser) {
   console.log(`Name ${name} age ${age}`)
