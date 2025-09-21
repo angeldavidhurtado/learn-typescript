@@ -69,6 +69,12 @@ function regresar(msg: string): never {
   throw new Error(msg)
 }
 
+try {
+  regresar('error')
+} catch(e) {
+  console.log(e)
+}
+
 
 function Functions() {
   return (
