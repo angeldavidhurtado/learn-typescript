@@ -1,6 +1,6 @@
 /*
 mal, Function es como el any de las funciones
-const sayHiFronFunction = (fn: Function) => {
+const sayHiFromFunction = (fn: Function) => {
   fn('Ángel')
 }
 */
@@ -8,7 +8,7 @@ const sayHiFronFunction = (fn: Function) => {
 // void significa que no retorna algo o que ignoramos lo que retorne
 // si fuera number, string, boolean, type o alguno así entonces
 // obliga a retornar un valor de ese tipo
-const sayHiFronFunction = (fn: (name: string) => void) => {
+const sayHiFromFunction = (fn: (name: string) => void) => {
   fn('Ángel')
 }
 
@@ -17,7 +17,7 @@ const sayHi = (name: string) => {
   return 3
 }
 
-sayHiFronFunction(sayHi)
+sayHiFromFunction(sayHi)
 
 // --- --- ---
 
@@ -33,6 +33,41 @@ const restar: (a: number, b: number) => number = (a, b) => {
   return a - b
 }
 restar(2, 1)
+
+// -- -- --
+
+// da error porque debe retornar void, osea nada
+// antes no daba error porque se definia
+// un parametro que recibia una funcion
+// ahora se define es una funcion como tal, no un parametro
+/*
+function regresar(msg: string): void {
+  return 123 // incorrecto
+  return null // incorrecto
+  return undefined // correcto
+}
+*/
+/*
+  never
+    la función nunca finaliza porque:
+    1. entra en un bucle infinito
+    2. retorna una excepción - un informe de un error
+  void
+    return undefined
+*/
+
+function regresar(msg: string): never {
+  /*
+  Nota: TypeScript no hace razonamiento complejo
+  for (let i = 0; i < 10; i--) {} // no aceptado para never
+  */
+  /*
+  // formas validas para never
+  for(;;) {}
+  while (true) {}
+  */
+  throw new Error(msg)
+}
 
 
 function Functions() {
