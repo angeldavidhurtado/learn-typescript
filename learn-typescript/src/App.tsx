@@ -8,9 +8,11 @@ import UtilityTypes from './Components/UtilityTypes'
 import Desconocido from './Components/Desconocido'
 import Generics from './Components/Generics'
 import Functions from './Components/Functions'
+import useTemplateUnionTypes from './hooks/useTemplateUnionTypes'
 
 function App() {
   const [count, setCount] = useState(0)
+  useTemplateUnionTypes()
 
   return (
     <>
