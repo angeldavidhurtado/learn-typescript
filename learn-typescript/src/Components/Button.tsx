@@ -1,5 +1,9 @@
 type Color = 'bg-yellow-500' | 'bg-blue-500' | 'bg-red-500'
 
+// let color: 'bg-yellow-500' | 'bg-blue-500' | 'bg-red-500' = 'bg-red-500'
+// let color: string | number = 123
+// let color: string | 2 = 2
+
 type ButtonProps = {
   text: string
   subtitle?: string

@@ -1,5 +1,7 @@
+type HeroId = `${string}-${string}-${string}-${string}-${string}`
+
 type Hero = {
-  id: `${string}-${string}-${string}-${string}-${string}`
+  id: HeroId
   name: string
   isActive?: boolean
   age?: number
@@ -13,6 +15,30 @@ function createHero(hero: Pick<Hero, 'name'>): Hero {
     isActive: true
   }
 }
+
+type HeroBasicInfo = {
+  name: string
+  age: number
+}
+
+type HeroPowerScale = 'local' | 'planetary' | 'galactic' | 'universal' | 'multiversal'
+
+type HeroProperties = {
+  readonly id?: HeroId
+  isActive?: boolean
+  powerScale?: HeroPowerScale
+}
+
+type Hero2 = HeroBasicInfo & HeroProperties
+
+const hero2: Hero2 = {
+  name: 'Ángel',
+  age: 26,
+  id: crypto.randomUUID(),
+  isActive: true
+}
+
+console.log(hero2)
 
 
 function useTemplateUnionTypes() {
