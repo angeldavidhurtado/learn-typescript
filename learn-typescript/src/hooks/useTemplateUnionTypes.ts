@@ -27,6 +27,10 @@ type HeroProperties = {
   readonly id?: HeroId
   isActive?: boolean
   powerScale?: HeroPowerScale
+  address?: {
+    planet: string
+    city: string
+  }
 }
 
 type Hero2 = HeroBasicInfo & HeroProperties
@@ -39,6 +43,30 @@ const hero2: Hero2 = {
 }
 
 console.log(hero2)
+
+const address: HeroProperties['address'] = {
+  planet: 'Tierra',
+  city: 'Bogotá'
+}
+
+console.log(address)
+
+// typeof para javascript normal dice el tipo de dato
+// typeof cuando lo recibe un type como type Address
+// ahí typescript guarda el type de typescript
+type Address = typeof address
+
+const myAddress: Address = {
+  planet: 'Tierra',
+  city: 'Bogotá'
+}
+
+console.log(myAddress)
+
+// as const asigna readonly a todos los parametros
+// si se quiere selectivamente se hace en la definicion del type
+const addressConst = { city: 'Bogotá', country: 'Colombia' } as const
+console.log(addressConst)
 
 
 function useTemplateUnionTypes() {
