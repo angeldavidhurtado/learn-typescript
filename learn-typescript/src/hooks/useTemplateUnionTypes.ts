@@ -68,6 +68,22 @@ console.log(myAddress)
 const addressConst = { city: 'Bogotá', country: 'Colombia' } as const
 console.log(addressConst)
 
+// typeof para funciones
+
+function createAddress() {
+  return {
+    planet: 'Tierra',
+    city: 'Bogotá'
+  }
+}
+
+type typeAddress = ReturnType<typeof createAddress>
+const otherAddressMore: typeAddress = {
+  planet: 'Tierra',
+  city: 'Bogotá'
+}
+console.log(otherAddressMore)
+
 
 function useTemplateUnionTypes() {
   const hero = createHero({ name: 'Ángel' })
