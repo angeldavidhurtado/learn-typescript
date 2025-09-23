@@ -84,6 +84,59 @@ const otherAddressMore: typeAddress = {
 }
 console.log(otherAddressMore)
 
+// Arrays
+
+// antiguamente era el tipo por defecto para arrays vacios en typescript
+// const languages: never[] = []
+// const languages: any[] = [] // ahora por defecto es any[]
+// const languages: string[] = []
+// const languages: Array<string> = [] // forma alternativa 
+// const languages: string[][] = []
+const languages: (string | string[])[] = []
+languages.push('JavaScript', ['hola'])
+
+const strOrNum: (string | number)[] = []
+strOrNum.push('a', 1)
+
+// tipo recursivo
+type NestedArray<T> = T | NestedArray<T>[]
+type NestedStringArray = NestedArray<string> // Nested = Anidado
+const arrayAnidado: NestedStringArray = ['a', ['b', ['c']], []]
+console.log(arrayAnidado)
+/*
+ * T sí es el parámetro genérico
+ * El NestedArray de la derecha no es un parámetro nuevo, es la misma
+ * entidad que se esta definiendo (una referencia autorreferente).
+ *
+ * TypeScript trata las definiciones de tipos de forma declarativa, no ejecutable
+ * le dices al compilador “hay un alias llamado NestedArray cuyo valor es T o un
+ * array de NestedArray<T>” y el compilador acepta la referencia recursiva.
+ *
+ * No hay error aunque parezca que “apuntas a algo que no existe aún” porque el
+ * comprobador de tipos resuelve el alias de forma laxa/recursiva durante el
+ * análisis, no necesita que la entidad esté “ejecutada” antes.
+ *
+ * Esto NO crea nada en tiempo de ejecución: los tipos se eliminan al compilar a
+ * JavaScript - sólo afectan al chequeo estático.
+ *
+ * En resumen:
+ * NestedArray a la derecha es la misma definición, usada recursivamente;
+ * T es el único parámetro;
+ * el compilador soporta ese patrón porque trabaja con tipos de forma declarativa
+ * y puede resolver referencias recursivas.
+ */
+
+const Heros: Hero[] = []
+Heros.push(
+  createHero({ name: 'A' }),
+  createHero({ name: 'B' }),
+  createHero({ name: 'C' })
+)
+
+// tuplas
+
+
+
 
 function useTemplateUnionTypes() {
   const hero = createHero({ name: 'Ángel' })
