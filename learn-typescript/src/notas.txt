@@ -1,3 +1,4 @@
 * any no es cualquier tipo de dato, sino que ignora el tipo de dato, no hay autocompletado porque no sabe que tipo de dato es
 * nunca utilizar any
 * siempre tratar de no tipar pero utilizando la inferencia de tipos lo mas que se pueda, sino, entonces tipar
+* TypeScript lo único que añade son tipos a JavaScript mientras se desarrolla, no mientras se interpreta
