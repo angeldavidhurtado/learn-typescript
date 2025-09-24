@@ -12,7 +12,8 @@ import useTemplateUnionTypes from './hooks/useTemplateUnionTypes'
 
 function App() {
   const [count, setCount] = useState(0)
-  useTemplateUnionTypes()
+  const [data, setData] = useTemplateUnionTypes()
+  console.log([data, setData])
 
   return (
     <>
@@ -41,6 +42,13 @@ function App() {
       <Desconocido />
       <Generics />
       <Functions />
+      <button
+        // onClick={() => setData(val => val + 1)}
+        onClick={() => setData(val => val + 1)}
+        className='block w-fit min-w-12 border-1 px-2 rounded-md cursor-pointer'
+      >
+        {data}
+      </button>
     </>
   )
 }

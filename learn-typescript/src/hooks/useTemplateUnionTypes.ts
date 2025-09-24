@@ -1,3 +1,8 @@
+import { useState } from 'react'
+// import { useState, type Dispatch, type SetStateAction } from 'react'
+
+
+
 type HeroId = `${string}-${string}-${string}-${string}-${string}`
 
 type Hero = {
@@ -135,13 +140,41 @@ Heros.push(
 
 // tuplas
 
-
+type CellValue = 'X' | 'O' | ''
+type GameBoard = [
+  [CellValue, CellValue, CellValue],
+  [CellValue, CellValue, CellValue],
+  [CellValue, CellValue, CellValue]
+]
+const gameBoard: GameBoard = [
+  ['X', 'O', ''],
+  ['X', '', ''],
+  ['O', '', 'O']
+]
+console.log(gameBoard)
+type RGBA = [number, number, number, string]
+const rgba: RGBA = [0, 0, 0, 'f']
+console.log(rgba)
+// en la funcion useTemplateUnionTypes hay otro ejemplo de tupla con React
+type State = [number, (value: number | ((prev: number) => number)) => void]
+// type State = [number, Dispatch<SetStateAction<number>>]
 
 
 function useTemplateUnionTypes() {
+  // esto es una tupla
+  const state: State = useState(0)
+  const [data, setData] = useState(0)
+  console.log(data)
+
   const hero = createHero({ name: 'Ángel' })
   const age = hero.age ?? 0 // hero.age === null || hero.age === undefined ? b : a
   console.log(`Hero: ${hero}, Age: ${age}`)
+  // return [data, setData]
+  const val: [number, React.Dispatch<React.SetStateAction<number>>] = [data, setData]
+  // return [data, setData] as [number, React.Dispatch<React.SetStateAction<number>>]
+  // return val
+  console.log(val)
+  return state
 }
 
 export default useTemplateUnionTypes
