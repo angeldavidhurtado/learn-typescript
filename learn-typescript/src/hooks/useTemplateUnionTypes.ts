@@ -159,6 +159,19 @@ console.log(rgba)
 type State = [number, (value: number | ((prev: number) => number)) => void]
 // type State = [number, Dispatch<SetStateAction<number>>]
 
+// -- tupla recursiva
+
+// BuildTuple<L, T> => tuple de longitud L con elementos T
+type BuildTuple<
+  L extends number,
+  T,
+  R extends unknown[] = []
+> = R['length'] extends L ? R : BuildTuple<L, T, [...R, T]>;
+
+type ThreeStrings = BuildTuple<3, string>; // [string, string, string]
+const t1: ThreeStrings = ['a','b','c'];   // OK
+console.log(t1)
+
 
 function useTemplateUnionTypes() {
   // esto es una tupla
