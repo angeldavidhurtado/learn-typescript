@@ -8,6 +8,27 @@ function divide(a: number, b: number) {
   return a / b // rama con tipo `number`
 }
 
+
+// Edicion de objetos
+
+type Carro = {
+  id: {
+    readonly saludo: number
+    data: {}
+  }
+}
+
+const carro: Carro = {
+  id: {
+    saludo: 2,
+    data: {}
+  }
+}
+
+// carro.id.saludo = 3 // error
+carro.id = { saludo: 2, data: {} }
+
+
 function useLessonTwo() {
   const dato = divide(4, 2) // aunque puede dar una excepcion el tipo de dato es number no never
   console.log(dato)
