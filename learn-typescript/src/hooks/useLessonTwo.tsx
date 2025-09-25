@@ -29,6 +29,25 @@ const carro: Carro = {
 carro.id = { saludo: 2, data: {} }
 
 
+// asdf
+
+type tupla = readonly [number, number]
+const data: tupla = [1, 2]
+// data.push(3)
+// esto debería dar un error
+// es un fallo de typescript que no arreglan para mantener la retro compatibilidad
+// se puede medio solucionar colocando en la definicion del tipo un readonly
+// aunque eso hace que la tupla no se pueda editar, util si se guardan colores
+// ya definidos pero en casos donde se quiera modificar el contenido no tan bueno
+// pero es lo que hay jaja
+console.log(data)
+
+// cómo hago un array de tantos arrays como se quiera y digamos todos con string
+// y si quiero string number string number ...
+// o si quiero string, number, boolean, number, string, number, boolean, number, string, ...
+
+
+
 function useLessonTwo() {
   const dato = divide(4, 2) // aunque puede dar una excepcion el tipo de dato es number no never
   console.log(dato)
