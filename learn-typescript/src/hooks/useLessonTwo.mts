@@ -230,7 +230,6 @@ if (!res.ok)
   throw new Error('Request failed')
 // const resData = await res.json() as GihubAPIResponse
 const resData: GihubAPIResponse = await res.json()
-console.log('-----------------------------')
 resData.items.map(repo => {
   return {
     name: repo.name,
@@ -238,7 +237,154 @@ resData.items.map(repo => {
     url: repo.html_url
   }
 })
-console.log('-----------------------------')
+
+
+// -- -- interface and type -- --
+/*
+ * interface - se puede declarar mas de una vez y se concatena con la definicion anterior
+ * type - solo se puede declarar una vez, si son mas da error
+ * tienen algunas pequeñas diferencias de sintaxis pero con abmas se puede lograr lo mismo
+ * de manera muy parecia, por lo general el codigo de type es mas comodo
+ * sin embargo se suele utilizar para declara tipo de clases, no se puede declarar un dato
+ * solito, tiene que sí o sí estar dentro de un objeto, entonces es como mas
+ * natural que si uno ve interface es porque se esta hablando de una clase de javascript,
+ * ahora bien, tipar una clase no tiene tanto sentido porque typescript infiere el tipo
+ * de dato de una clase y como solo se declara una vez entonces como que no tiene tanto sentido
+ * tipar una clase, si embargo, tiene sentido cuando ese tipo de dato se quiere exportar para
+ * utilizarlo en otras partes del codigo, se puede utilizar en una libreria o un modulo
+ * interface - export class, si no se exporta es mejor que typescript infiera el tipo, tambien
+ * previene de que en caso de modificar la clase debe coincidir con el tipo, y esto da estabilidad
+ * al sistema, muy util para hacer testing, si se importara la clase directamente nunca se sabria
+ * si cumple los valores deseados, en cambio con el contrato la interface ahí ya debe coincidir y
+ * hay mas garantia de seguridad, de que la clase sea lo que se espera, ademas de tener
+ * encapsulamiento en tiempo de compilación
+ * type - datos en general y objetos literales
+ */
+
+/*
+ * public → acceso libre (default).
+ * private → solo dentro de la clase.
+ * protected → dentro de la clase y subclases.
+ * readonly → no se puede reasignar después de constructor/declaración.
+ * #campo → privado real en JS (runtime), también validado por TS.
+ */
+interface IEncapsulation {
+  a: number          // público
+  readonly d: number // solo lectura
+  reveal(): (number | undefined)[] // el método es público
+}
+class Encapsulation implements IEncapsulation {
+  public a = 1
+  private b = 2
+  protected c = 3
+  readonly d = 4
+  #e = 5
+
+  reveal() {
+    return [this.a, this.b, this.c, this.d, this.#e]
+  }
+}
+const encapsulation = new Encapsulation()
+console.log(encapsulation.reveal())
+
+
+
+
+// contrato público (interface)
+export interface Storage {
+  save(key: string, value: string): void
+  load(key: string): string | null
+}
+
+// implementación real
+export class LocalStorage implements Storage {
+  save(key: string, value: string) {
+    localStorage.setItem(key, value)
+  }
+  load(key: string) {
+    return localStorage.getItem(key)
+  }
+}
+
+// implementación alternativa (mock para testing)
+export class MemoryStorage implements Storage {
+  private store: Record<string, string> = {}
+  save(key: string, value: string) {
+    this.store[key] = value
+  }
+  load(key: string) {
+    return this.store[key] ?? null
+  }
+}
+
+// servicio desacoplado del storage concreto
+export class UserService {
+  private storage: Storage
+
+  constructor(storage: Storage) {
+    this.storage = storage
+  }
+
+  addUser(name: string) {
+    this.storage.save("user", name)
+  }
+}
+
+
+
+
+
+/*
+// storage.ts
+export interface Storage {
+  save(item: string): void;
+  load(key: string): string | null;
+}
+
+export class LocalStorage implements Storage {
+  save(item: string) { ... }
+  load(key: string) { return null; }
+}
+*/
+/*
+// service.ts
+import { Storage } from "./storage";
+
+export class UserService {
+  constructor(private storage: Storage) {}
+
+  addUser(user: string) {
+    this.storage.save(user);
+  }
+}
+*/
+/*
+// test.ts
+import { UserService } from "./service";
+import { Storage } from "./storage";
+
+class MockStorage implements Storage {
+  save(item: string) { guardar en memoria }
+  load(key: string) { return "mock"; }
+}
+
+const service = new UserService(new MockStorage());
+*/
+class User {
+  #pass = '123'
+
+  setPass = (pass: string) => {
+    this.#pass = pass
+  }
+
+  savePass = () => {
+    console.log(`The pass: ${this.#pass} was saved`)
+  }
+}
+const user = new User()
+user.setPass('abc')
+// console.log(user.pass) // encapsulamiento real en tiempo de ejecución
+
 
 function useLessonTwo() {
   const dato = divide(4, 2) // aunque puede dar una excepcion el tipo de dato es number no never
