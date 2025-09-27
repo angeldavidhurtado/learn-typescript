@@ -346,38 +346,38 @@ export class UserService {
 /*
 // storage.ts
 export interface Storage {
-  save(item: string): void;
-  load(key: string): string | null;
+  save(item: string): void
+  load(key: string): string | null
 }
 
 export class LocalStorage implements Storage {
   save(item: string) { ... }
-  load(key: string) { return null; }
+  load(key: string) { return null }
 }
 */
 /*
 // service.ts
-import { Storage } from "./storage";
+import { Storage } from "./storage"
 
 export class UserService {
   constructor(private storage: Storage) {}
 
   addUser(user: string) {
-    this.storage.save(user);
+    this.storage.save(user)
   }
 }
 */
 /*
 // test.ts
-import { UserService } from "./service";
-import { Storage } from "./storage";
+import { UserService } from "./service"
+import { Storage } from "./storage"
 
 class MockStorage implements Storage {
   save(item: string) { guardar en memoria }
-  load(key: string) { return "mock"; }
+  load(key: string) { return "mock" }
 }
 
-const service = new UserService(new MockStorage());
+const service = new UserService(new MockStorage())
 */
 class User {
   #pass = '123'
@@ -393,6 +393,79 @@ class User {
 const user = new User()
 user.setPass('abc')
 // console.log(user.pass) // encapsulamiento real en tiempo de ejecución
+
+
+// -- -- narrowing -- --
+
+function mostrarLongitud(dato: number | string) {
+  if (typeof dato === 'string')
+    return dato.length
+  return dato.toString().length
+}
+console.log(mostrarLongitud(3))
+
+
+// -- -- type guard -- --
+
+interface Mario {
+  company: 'nintendo'
+  // puede ser de tipo string pero con el texto como
+  // tal oliga a que simpre sea ese texto especifico
+  saltar: () => void
+}
+
+interface Sonic {
+  company: 'sega'
+  correr: () => void
+}
+
+
+// type guard
+type Personaje = Mario | Sonic
+function checkIsSonic(personaje: Personaje): personaje is Sonic {
+  return (personaje as Sonic).correr !== undefined
+  /*
+  personaje is Sonic - es un "type predicate" (predicado de tipo)
+  indica al compilador que, si la función "checkIsSonic" devuelve "true"
+  entonces puede tratar con seguridad a la variable "personaje"
+  como si fuera del tipo "Sonic" en el resto del código,
+  habilitando autocompletado, validaciones y evitando "type errors"
+  Es un "type guard personalizado" para refinar el tipo en tiempo de compilación
+  Tambien hay type guard predefinido como typeof o instanceof
+  */
+}
+
+function jugar(personaje: Personaje) {
+  if (checkIsSonic(personaje))
+    personaje.correr()
+  else
+    personaje.saltar()
+}
+// Recomendación
+// Siempre que se pueda mejor utilizar typeof o instanceof porque son mas
+// simples, código mas limpio
+// type guards cuando esos no alcanzan, por ej. con tipos estructurales
+// (interfaces sin clase asociada) o propiedades opcionales que no
+// pueden distinguirse con typeof o instanceof
+
+const sonic: Sonic = {
+  company: 'sega',
+  correr: () => {
+    console.log('¡Sonic está corriendo a toda velocidad!')
+  }
+}
+jugar(sonic)
+
+const mario: Mario = {
+  company: 'nintendo',
+  saltar: () => {
+    console.log('Mario está saltando')
+  }
+}
+jugar(mario)
+
+
+// -- --  -- --
 
 
 function useLessonTwo() {
