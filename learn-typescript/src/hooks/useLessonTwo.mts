@@ -268,6 +268,20 @@ resData.items.map(repo => {
  * readonly → no se puede reasignar después de constructor/declaración.
  * #campo → privado real en JS (runtime), también validado por TS.
  */
+
+/*
+Buenas prácticas
+
+Interfaces + implements
+Cuando quieres contratos reutilizables o intercambiables (repositorios, servicios, adaptadores, APIs)
+
+Solo clase
+Para entidades o lógica de negocio que no van a tener múltiples implementaciones
+
+Solo interfaz
+Para definir estructuras de datos (ej. IUserDTO, IConfig, etc.)
+*/
+
 interface IEncapsulation {
   a: number          // público
   readonly d: number // solo lectura
@@ -286,8 +300,6 @@ class Encapsulation implements IEncapsulation {
 }
 const encapsulation = new Encapsulation()
 console.log(encapsulation.reveal())
-
-
 
 
 // contrato público (interface)
@@ -329,9 +341,6 @@ export class UserService {
     this.storage.save("user", name)
   }
 }
-
-
-
 
 
 /*
