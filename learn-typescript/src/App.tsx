@@ -9,13 +9,15 @@ import Desconocido from './Components/Desconocido'
 import Generics from './Components/Generics'
 import Functions from './Components/Functions'
 import useTemplateUnionTypes from './hooks/useTemplateUnionTypes'
-import useLessonTwo from './hooks/useLessonTwo'
+import useLessonTwo from './hooks/useLessonTwo.mts'
+import useMagicStrings from './hooks/useMagicStrings'
 
 function App() {
   const [count, setCount] = useState(0)
   const [data, setData] = useTemplateUnionTypes()
   console.log([data, setData])
   useLessonTwo()
+  useMagicStrings()
 
   return (
     <>
