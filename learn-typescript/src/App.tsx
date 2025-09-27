@@ -11,6 +11,7 @@ import Functions from './Components/Functions'
 import useTemplateUnionTypes from './hooks/useTemplateUnionTypes'
 import useLessonTwo from './hooks/useLessonTwo.mts'
 import useMagicStrings from './hooks/useMagicStrings'
+import usePersonajes from './hooks/usePersonajes'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,6 +19,7 @@ function App() {
   console.log([data, setData])
   useLessonTwo()
   useMagicStrings()
+  usePersonajes()
 
   return (
     <>

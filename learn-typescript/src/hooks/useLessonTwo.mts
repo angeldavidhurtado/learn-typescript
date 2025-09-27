@@ -1,96 +1,94 @@
 // To parse this data:
-//
-//   import { Convert, GihubAPIResponse } from "./file"
-//
-//   const gihubAPIResponse = Convert.toGihubAPIResponse(json)
+// import { Convert, GihubAPIResponse } from "./file"
+// const gihubAPIResponse = Convert.toGihubAPIResponse(json)
 
 export type GihubAPIResponse = {
-    total_count:        number
-    incomplete_results: boolean
-    items:              Item[]
+  total_count: number
+  incomplete_results: boolean
+  items: Item[]
 }
 
 export type Item = {
-    id:                          number
-    node_id:                     string
-    name:                        string
-    full_name:                   string
-    private:                     boolean
-    owner:                       Owner
-    html_url:                    string
-    description:                 null | string
-    fork:                        boolean
-    url:                         string
-    forks_url:                   string
-    keys_url:                    string
-    collaborators_url:           string
-    teams_url:                   string
-    hooks_url:                   string
-    issue_events_url:            string
-    events_url:                  string
-    assignees_url:               string
-    branches_url:                string
-    tags_url:                    string
-    blobs_url:                   string
-    git_tags_url:                string
-    git_refs_url:                string
-    trees_url:                   string
-    statuses_url:                string
-    languages_url:               string
-    stargazers_url:              string
-    contributors_url:            string
-    subscribers_url:             string
-    subscription_url:            string
-    commits_url:                 string
-    git_commits_url:             string
-    comments_url:                string
-    issue_comment_url:           string
-    contents_url:                string
-    compare_url:                 string
-    merges_url:                  string
-    archive_url:                 string
-    downloads_url:               string
-    issues_url:                  string
-    pulls_url:                   string
-    milestones_url:              string
-    notifications_url:           string
-    labels_url:                  string
-    releases_url:                string
-    deployments_url:             string
-    created_at:                  Date
-    updated_at:                  Date
-    pushed_at:                   Date
-    git_url:                     string
-    ssh_url:                     string
-    clone_url:                   string
-    svn_url:                     string
-    homepage:                    null | string
-    size:                        number
-    stargazers_count:            number
-    watchers_count:              number
-    language:                    Language | null
-    has_issues:                  boolean
-    has_projects:                boolean
-    has_downloads:               boolean
-    has_wiki:                    boolean
-    has_pages:                   boolean
-    has_discussions:             boolean
-    forks_count:                 number
-    mirror_url:                  null
-    archived:                    boolean
-    disabled:                    boolean
-    open_issues_count:           number
-    license:                     License | null
-    allow_forking:               boolean
-    is_template:                 boolean
-    web_commit_signoff_required: boolean
-    topics:                      string[]
-    visibility:                  Visibility
-    forks:                       number
-    open_issues:                 number
-    watchers:                    number
-    default_branch:              DefaultBranch
-    score:                       number
+  id: number
+  node_id: string
+  name: string
+  full_name: string
+  private: boolean
+  owner: Owner
+  html_url: string
+  description: null | string
+  fork: boolean
+  url: string
+  forks_url: string
+  keys_url: string
+  collaborators_url: string
+  teams_url: string
+  hooks_url: string
+  issue_events_url: string
+  events_url: string
+  assignees_url: string
+  branches_url: string
+  tags_url: string
+  blobs_url: string
+  git_tags_url: string
+  git_refs_url: string
+  trees_url: string
+  statuses_url: string
+  languages_url: string
+  stargazers_url: string
+  contributors_url: string
+  subscribers_url: string
+  subscription_url: string
+  commits_url: string
+  git_commits_url: string
+  comments_url: string
+  issue_comment_url: string
+  contents_url: string
+  compare_url: string
+  merges_url: string
+  archive_url: string
+  downloads_url: string
+  issues_url: string
+  pulls_url: string
+  milestones_url: string
+  notifications_url: string
+  labels_url: string
+  releases_url: string
+  deployments_url: string
+  created_at: Date
+  updated_at: Date
+  pushed_at: Date
+  git_url: string
+  ssh_url: string
+  clone_url: string
+  svn_url: string
+  homepage: null | string
+  size: number
+  stargazers_count: number
+  watchers_count: number
+  language: Language | null
+  has_issues: boolean
+  has_projects: boolean
+  has_downloads: boolean
+  has_wiki: boolean
+  has_pages: boolean
+  has_discussions: boolean
+  forks_count: number
+  mirror_url: null
+  archived: boolean
+  disabled: boolean
+  open_issues_count: number
+  license: License | null
+  allow_forking: boolean
+  is_template: boolean
+  web_commit_signoff_required: boolean
+  topics: string[]
+  visibility: Visibility
+  forks: number
+  open_issues: number
+  watchers: number
+  default_branch: DefaultBranch
+  score: number
 }
 
 export type DefaultBranch = "master" | "main" | "dev" | "develop"
@@ -98,33 +96,33 @@ export type DefaultBranch = "master" | "main" | "dev" | "develop"
 export type Language = "JavaScript" | "HTML" | "TypeScript" | "CSS"
 
 export type License = {
-    key:     string
-    name:    string
-    spdx_id: string
-    url:     null | string
-    node_id: string
+  key: string
+  name: string
+  spdx_id: string
+  url: null | string
+  node_id: string
 }
 
 export type Owner = {
-    login:               string
-    id:                  number
-    node_id:             string
-    avatar_url:          string
-    gravatar_id:         string
-    url:                 string
-    html_url:            string
-    followers_url:       string
-    following_url:       string
-    gists_url:           string
-    starred_url:         string
-    subscriptions_url:   string
-    organizations_url:   string
-    repos_url:           string
-    events_url:          string
-    received_events_url: string
-    type:                Type
-    user_view_type:      Visibility
-    site_admin:          boolean
+  login: string
+  id: number
+  node_id: string
+  avatar_url: string
+  gravatar_id: string
+  url: string
+  html_url: string
+  followers_url: string
+  following_url: string
+  gists_url: string
+  starred_url: string
+  subscriptions_url: string
+  organizations_url: string
+  repos_url: string
+  events_url: string
+  received_events_url: string
+  type: Type
+  user_view_type: Visibility
+  site_admin: boolean
 }
 
 export type Type = "Organization" | "User"
@@ -133,16 +131,14 @@ export type Visibility = "public"
 
 // Converts JSON strings to/from your types
 export class Convert {
-    public static toGihubAPIResponse(json: string): GihubAPIResponse {
-        return JSON.parse(json)
-    }
+  public static toGihubAPIResponse(json: string): GihubAPIResponse {
+    return JSON.parse(json)
+  }
 
-    public static gihubAPIResponseToJson(value: GihubAPIResponse): string {
-        return JSON.stringify(value)
-    }
+  public static gihubAPIResponseToJson(value: GihubAPIResponse): string {
+    return JSON.stringify(value)
+  }
 }
-
-
 
 
 const a = '1'
@@ -264,9 +260,14 @@ resData.items.map(repo => {
 /*
  * public → acceso libre (default).
  * private → solo dentro de la clase.
- * protected → dentro de la clase y subclases.
+ * protected → dentro de la clase y subclases (clases que heredan este atributo pueden acceder a el).
  * readonly → no se puede reasignar después de constructor/declaración.
  * #campo → privado real en JS (runtime), también validado por TS.
+ * se pueden utilizar varios al mismo tiempo
+ * private readonli nommbrePropiedad: tipo = valor inicial
+ * public es por defecto, si no se pone nada nombre: string = 'Ángel'
+ * entonces por defecto es public
+ * en interfaces todo es public y puede ser readonly, pero private y protecte va en la clase
  */
 
 /*
@@ -463,9 +464,6 @@ const mario: Mario = {
   }
 }
 jugar(mario)
-
-
-// -- --  -- --
 
 
 function useLessonTwo() {
