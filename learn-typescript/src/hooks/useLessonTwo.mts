@@ -466,6 +466,93 @@ const mario: Mario = {
 jugar(mario)
 
 
+// -- -- union types -- --
+// -- -- sobrecarga de funicones -- --
+
+/*
+// es mejor la segunda forama para evitar repetir código
+// si se utiliza type da error, debe ser con interface
+
+interface IMoment {
+  utcOffset(): number,
+  utcOffset(b: number): IMoment,
+  utcOffset(b: string): IMoment
+}
+
+interface IMoment {
+  utcOffset(): number,
+  utcOffset(b: number | string): IMoment
+}
+
+// por qué no usamos esta firma?
+// porque typescript entiende que el método siempre
+// devuelte un IMoment o un number, pero no puede deducir
+// cuando devuelve uno u otro, se pierde precisión en
+// los tipos de retorno
+interface IMoment {
+  utcOffset(b?: number | string): IMoment | number
+}
+*/
+
+interface IMoment {
+  utcOffset(): number,
+  utcOffset(b: number | string): IMoment
+  utcOffset(b: boolean): string
+}
+
+class MyMoment implements IMoment {
+  // overload signatures (sin cuerpo)
+  // estas firmas se repiten con las del contrato porque el contrato (interface)
+  // no es que se "herede" a la class, sino que simplemente indica yo que datos le doy
+  // a la clase y la clase que datos me devuelte y ya está, eso es todo lo que indica
+  // el contrato, ahora bien, hay que repetirlo dentro de la clase porque la clase aun
+  // no me esta garantizando que me va a cumplir con lo que habiamos hablado en el
+  // contrato, entonces para garantizar eso ella implementa las mismas firmas, con eso
+  // ahora si lo está garantizando, es decir, el contrato define que le entrego y que
+  // me devuel y hasta ahí llega el contrato, despues, la clase mirará a ver como hace
+  // para cumplir con el contrato, pero eso si ya es aparte, es cosa de la clase mirar
+  // a ver como hacer, el contrato no se va a poner a hacer el trabajo por la clase
+  // el contrato es el acuerdo y la clase debe implementar lo que se hablo
+  utcOffset(): number
+  utcOffset(b: number | string): IMoment
+  utcOffset(b: boolean): string
+
+  // única implementación compatible con ambas firmas
+  utcOffset(b?: number | string | boolean ): number | IMoment | string {
+    if (typeof b === "undefined") return 0
+    if (typeof b === "boolean") return 'a'
+    return this
+  }
+}
+
+const myMoment = new MyMoment()
+console.log(myMoment)
+
+
+// -- -- intersection -- --
+
+interface ITimestamps {
+  createAt: Date
+  updateAt: Date
+}
+
+interface IUser {
+  id: number
+  name: string
+}
+
+type UserWithTimestamps = IUser & ITimestamps
+
+const userWithTimestamps: UserWithTimestamps = {
+  id: 1,
+  name: 'Ángel',
+  createAt: new Date(),
+  updateAt: new Date()
+}
+
+console.log(userWithTimestamps)
+
+
 function useLessonTwo() {
   const dato = divide(4, 2) // aunque puede dar una excepcion el tipo de dato es number no never
   console.log(dato)
