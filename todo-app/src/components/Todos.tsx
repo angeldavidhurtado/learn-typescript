@@ -1,11 +1,32 @@
-import type { TodosProps } from './../types/todo'
+import type { Todo as TodoType, TodoList, TodoId } from '@/types/todo'
+import Todo from './Todo'
 
-function Todos({ todos }: TodosProps) {
-  console.log(todos)
+interface TodosProps {
+  todos: TodoList
+  onToggleCompleted: ({ id, completed }: Pick<TodoType, 'id' | 'completed'>) => void
+  onRemoveTodo: ({ id }: TodoId) => void
+}
+
+function Todos({ todos, onToggleCompleted, onRemoveTodo }: TodosProps) {
+  console.log(onToggleCompleted)
+
   return (
-    <>
-      <h2>Todos</h2>
-    </>
+    <ul className="todo-list">
+      {todos.map(todo => (
+        <li
+          key={todo.id}
+          className={`${todo.completed ? 'completed' : ''}`}
+        >
+          <Todo
+            key={todo.id}
+            id={todo.id}
+            title={todo.title}
+            completed={todo.completed}
+            onRemoveTodo={onRemoveTodo}
+          />
+        </li>
+      ))}
+    </ul>
   )
 }
 
