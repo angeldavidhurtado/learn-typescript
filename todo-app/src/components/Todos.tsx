@@ -3,13 +3,11 @@ import Todo from './Todo'
 
 interface TodosProps {
   todos: TodoList
-  onToggleCompleted: ({ id, completed }: Pick<TodoType, 'id' | 'completed'>) => void
   onRemoveTodo: ({ id }: TodoId) => void
+  onToggleCompleted: ({ id, completed }: Pick<TodoType, 'id' | 'completed'>) => void
 }
 
 function Todos({ todos, onToggleCompleted, onRemoveTodo }: TodosProps) {
-  console.log(onToggleCompleted)
-
   return (
     <ul className="todo-list">
       {todos.map(todo => (
@@ -22,6 +20,7 @@ function Todos({ todos, onToggleCompleted, onRemoveTodo }: TodosProps) {
             id={todo.id}
             title={todo.title}
             completed={todo.completed}
+            onToggleCompleted={onToggleCompleted}
             onRemoveTodo={onRemoveTodo}
           />
         </li>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Footer from '@/components/Footer'
 import Todos from './components/Todos'
 import type { Todo as TodoType, TodoList, TodoId } from '@/types/todo'
 
@@ -62,6 +63,7 @@ function App() {
       errores y se mejora la experiencia de desarrollo
       */}
 
+      <Footer />
     </div>
   )
 }
