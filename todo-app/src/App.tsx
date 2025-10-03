@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import Footer from '@/components/Footer'
 import Todos from './components/Todos'
-import type { Todo as TodoType, TodoList, TodoId } from '@/types/todo'
+import Header from './components/Header'
+import type { Todo as TodoType, TodoList, TodoId, TodoTitle } from '@/types/todo'
+import { TODO_FILTERS, type FilterValue } from '@/constants/todosChecks'
 
 // https://www.youtube.com/watch?v=4lAYfsq-2TE&t=866s
 // tuilizar la inferencia siempre que se puede, porque si no
@@ -29,6 +31,7 @@ const mockTodos: TodoList = [
 
 function App() {
   const [todos, setTodos] = useState(mockTodos)
+  const [filterSelected, setFilterSelected] = useState<FilterValue>(TODO_FILTERS.ALL)
 
   const handleRemove = ({ id }: TodoId) => {
     const newTodos = todos.filter(todo => todo.id !== id)
@@ -46,13 +49,43 @@ function App() {
     setTodos(newTodos)
   }
 
+  const handleFilterChange = (filter: FilterValue) => {
+    setFilterSelected(filter)
+  }
+
+  const handleRemoveAllCompleted = () => {
+    const newTodos = todos.filter(todo => !todo.completed)
+    setTodos(newTodos)
+  }
+
+  const handleOnAddTodo = ({ title }: TodoTitle) => {
+    const newTodo = {
+      title,
+      id: crypto.randomUUID(),
+      completed: false
+    }
+
+    const newTodos = [...todos, newTodo]
+    setTodos(newTodos)
+  }
+
+  const activeCount = todos.filter(todo => !todo.completed).length
+  const completedCount = todos.length - activeCount
+
+  const filteredTodos = todos.filter(todo => {
+    if (filterSelected === TODO_FILTERS.ACTIVE) return !todo.completed
+    if (filterSelected === TODO_FILTERS.COMPLETED) return todo.completed
+    return todo
+  })
+
   return (
     <div className='todoapp'>
-      <h1>To Do</h1>
+      <Header onAddTodo={handleOnAddTodo} />
+
       <Todos
         onToggleCompleted={handleCompleted}
         onRemoveTodo={handleRemove}
-        todos={todos}
+        todos={filteredTodos}
       />
 
       {/*
@@ -63,7 +96,13 @@ function App() {
       errores y se mejora la experiencia de desarrollo
       */}
 
-      <Footer />
+      <Footer
+        activeCount={activeCount}
+        filterSelected={filterSelected}
+        completedCount={completedCount}
+        onClearCompleted={handleRemoveAllCompleted}
+        handleFilterChange={handleFilterChange}
+      />
     </div>
   )
 }
