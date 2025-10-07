@@ -27,9 +27,7 @@ function Todo({ id, title, completed, onRemoveTodo, onToggleCompleted }: TodoPro
       <label>{title}</label>
       <button
         className="destroy"
-        onClick={() => {
-          onRemoveTodo({ id })
-        }}
+        onClick={() => { onRemoveTodo({ id }) }}
       >
         X
       </button>

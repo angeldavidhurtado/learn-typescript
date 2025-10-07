@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import Footer from '@/components/Footer'
-import Todos from './components/Todos'
 import Header from './components/Header'
+import Todos from './components/Todos'
+import Footer from '@/components/Footer'
 import type { Todo as TodoType, TodoList, TodoId, TodoTitle } from '@/types/todo'
 import { TODO_FILTERS, type FilterValue } from '@/constants/todosChecks'
 
