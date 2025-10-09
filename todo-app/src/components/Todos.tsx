@@ -9,7 +9,7 @@ interface TodosProps {
 
 function Todos({ todos, onToggleCompleted, onRemoveTodo }: TodosProps) {
   return (
-    <ul className="todo-list">
+    <ul className='mt-6 mb-5'>
       {todos.map(todo => (
         <li
           key={todo.id}

@@ -17,7 +17,7 @@ function CreateTodo({ saveTodo }: CreateTodoProps) {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        className="new-todo"
+        className='border rounded-md px-2 py-1 outline-none'
         value={inputValue}
         onChange={e => { setInputValue(e.target.value) }}
         placeholder="¿Qué quiere hacer?"

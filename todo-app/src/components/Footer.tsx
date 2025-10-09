@@ -17,8 +17,8 @@ function Footer({
   onClearCompleted
 }: FooterProps) {
   return (
-    <footer className="footer">
-      <span className="todo-count">
+    <footer className="footer text-sm">
+      <span>
         <strong>{activeCount}</strong> tareas pendientes
       </span>
 
@@ -30,7 +30,6 @@ function Footer({
       {
         completedCount > 0 && (
           <button
-            className="clear-completed"
             onClick={onClearCompleted}
           >
             Borrar completadas

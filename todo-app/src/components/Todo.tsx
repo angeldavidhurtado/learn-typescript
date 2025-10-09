@@ -14,7 +14,7 @@ function Todo({ id, title, completed, onRemoveTodo, onToggleCompleted }: TodoPro
   return (
     <div className="view">
       <input
-        className="toggle"
+        className='mr-1'
         checked={completed}
         type="checkbox"
         onChange={handleChangeCheckbox}

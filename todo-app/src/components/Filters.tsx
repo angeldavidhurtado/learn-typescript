@@ -27,7 +27,7 @@ function Filters({ filterSelected, onFilterChange }: FiltersProps) {
     }
 
   return (
-    <ul className='filters'>
+    <ul className='mb-2'>
       {
         Object.entries(FILTERS_BUTTONS).map(([key, { href, literal }]) => {
           const isSelected = key === filterSelected

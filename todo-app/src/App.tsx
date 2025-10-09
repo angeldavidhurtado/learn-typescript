@@ -79,7 +79,7 @@ function App() {
   })
 
   return (
-    <div className='todoapp'>
+    <div className='w-fit m-auto bg-amber-950 p-5 rounded-md my-5 shadow-[0_0_15px_theme(colors.amber.200)] border border-amber-200'>
       <Header onAddTodo={handleOnAddTodo} />
 
       <Todos
